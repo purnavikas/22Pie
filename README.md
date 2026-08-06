@@ -12,20 +12,35 @@ Production-shaped website starter for 22Pie, built for static frontend hosting o
 
 ## Local Frontend
 
+Recommended runtime:
+
+- Node.js `22.13.0` or newer
+- npm `10` or newer
+
+Fresh clone setup:
+
 ```bash
-cd frontend
+git clone https://github.com/veeraphani1322-syndicate/22Pie.git
+cd 22Pie
 npm install
 npm run dev
 ```
 
+Then open the local URL printed by Next.js, usually `http://localhost:3000`.
+
 ## Static Build
 
 ```bash
-cd frontend
 npm run build
 ```
 
 The exported frontend is generated in `frontend/out` and can be copied to Hostinger `public_html`.
+
+## What Is Included
+
+The repository includes all source code, generated website images, PHP API files, SQL schema, docs, deployment files, `package.json`, and `package-lock.json`.
+
+The repository intentionally does not include `node_modules`, `.next`, or `frontend/out`. Those are recreated from the lockfile with `npm install` and `npm run build`.
 
 ## Backend Setup
 
