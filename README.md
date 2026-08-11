@@ -20,8 +20,8 @@ Recommended runtime:
 Fresh clone setup:
 
 ```bash
-git clone https://github.com/veeraphani1322-syndicate/22Pie.git
-cd 22Pie
+git clone https://github.com/veeraphani1322-syndicate/Test22Pie.git
+cd Test22Pie
 npm install
 npm run dev
 ```
