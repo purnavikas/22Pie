@@ -42,6 +42,11 @@ The repository includes all source code, generated website images, PHP API files
 
 The repository intentionally does not include `node_modules`, `.next`, or `frontend/out`. Those are recreated from the lockfile with `npm install` and `npm run build`.
 
+## Development workflow
+
+Changes move through `feature/*` -> `dev` -> `uat` -> `main`. See
+[`docs/BRANCHING.md`](docs/BRANCHING.md) for the commands and promotion rules.
+
 ## Backend Setup
 
 1. Create a MySQL database in Hostinger.
