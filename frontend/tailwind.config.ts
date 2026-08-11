@@ -5,19 +5,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        graphite: '#101114',
-        ink: '#18191f',
-        paper: '#fbfaf6',
-        violet: '#6d5dfc',
-        aqua: '#0aa6a6',
-        coral: '#e96f5f'
+        graphite: '#17212B',
+        ink: '#33404B',
+        paper: '#EEE9DF',
+        violet: '#6F83A6',
+        aqua: '#C6D9D8',
+        coral: '#C58B57'
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace']
       },
       boxShadow: {
-        soft: '0 24px 80px rgba(16, 17, 20, 0.12)'
+        soft: '0 24px 70px rgba(0, 0, 0, 0.12)'
       }
     }
   },

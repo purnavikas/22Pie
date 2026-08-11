@@ -2,10 +2,10 @@ import { ecosystem } from '@/data/site';
 
 export function EcosystemVisual() {
   return (
-    <div className="relative min-h-[420px] overflow-hidden rounded border border-graphite/10 bg-graphite p-6 text-paper shadow-soft" aria-label="Technology ecosystem">
-      <div className="absolute inset-8 rounded-full border border-paper/10" />
-      <div className="absolute inset-20 rounded-full border border-paper/10" />
-      <div className="absolute left-1/2 top-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-aqua/50 bg-paper text-center text-sm font-bold text-graphite">
+    <div className="relative min-h-[420px] overflow-hidden rounded border-2 border-graphite bg-graphite p-6 text-paper shadow-soft" aria-label="Technology ecosystem">
+      <div className="absolute inset-8 rounded-full border-2 border-aqua" />
+      <div className="absolute inset-20 rounded-full border-2 border-coral" />
+      <div className="absolute left-1/2 top-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-aqua bg-paper text-center text-sm font-bold text-graphite">
         Pie
         <span className="block text-[10px] font-medium">ecosystem</span>
       </div>
@@ -20,7 +20,7 @@ export function EcosystemVisual() {
 
           return (
             <span
-              className="ecosystem-node absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-semibold backdrop-blur transition hover:border-aqua hover:bg-aqua hover:text-graphite"
+              className="ecosystem-node absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border-2 border-paper bg-violet px-3 py-1.5 text-[11px] font-semibold transition hover:border-aqua hover:bg-aqua hover:text-graphite"
               key={label}
               style={style}
             >

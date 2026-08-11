@@ -1,16 +1,8 @@
-import Image from 'next/image';
-
 export function Logo() {
   return (
-    <span className="relative inline-flex h-12 w-36 items-center">
-      <Image
-        alt="22Pi.com"
-        className="object-contain"
-        fill
-        priority
-        sizes="144px"
-        src="/images/logo-22pi.png"
-      />
+    <span className="inline-flex items-center gap-2 text-xl font-bold tracking-[-0.04em] text-white">
+      <span className="grid size-8 place-items-center rounded-full bg-violet text-sm text-white">π</span>
+      22pie
     </span>
   );
 }

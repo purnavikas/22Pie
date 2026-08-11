@@ -6,8 +6,8 @@
   --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, monospace;
   color-scheme: light;
-  background: #fbfaf6;
-  color: #18191f;
+  background: #17212b;
+  color: #33404b;
 }
 
 * {
@@ -20,22 +20,83 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 15% 0%, rgba(109, 93, 252, 0.14), transparent 32rem),
-    radial-gradient(circle at 88% 10%, rgba(10, 166, 166, 0.14), transparent 28rem),
-    #fbfaf6;
+  background: #eee9df;
   font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+.tech-hero {
+  background-color: #17212b;
+}
+
+.hero-video {
+  mask-image: radial-gradient(ellipse 82% 78% at center, #000 38%, rgba(0, 0, 0, 0.92) 58%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 82% 78% at center, #000 38%, rgba(0, 0, 0, 0.92) 58%, transparent 100%);
+}
+
+.hero-video-wash {
+  background:
+    linear-gradient(to bottom, #17212b 0%, transparent 18%, transparent 72%, #17212b 100%),
+    linear-gradient(to right, #17212b 0%, transparent 16%, transparent 84%, #17212b 100%),
+    linear-gradient(90deg, rgba(23, 33, 43, 0.5) 0%, transparent 46%, rgba(23, 33, 43, 0.08) 100%);
+}
+
+.hero-watermark {
+  color: rgba(255, 255, 255, 0.3);
+  mix-blend-mode: screen;
+  text-shadow: 0 2px 24px rgba(23, 33, 43, 0.24);
+}
+
+.nav-island {
+  border-radius: 999px;
+  max-width: calc(100vw - 1.5rem);
+  transition:
+    width 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-radius 380ms ease,
+    transform 300ms ease;
+  width: 224px;
+}
+
+.nav-island[data-expanded="true"] {
+  border-radius: 28px;
+  width: min(1120px, calc(100vw - 1.5rem));
+}
+
+.nav-island-content {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    max-height 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 180ms ease,
+    transform 280ms ease;
+  visibility: hidden;
+}
+
+.nav-island[data-expanded="true"] .nav-island-content {
+  max-height: 520px;
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 80ms;
+  visibility: visible;
+}
+
+.marquee-track {
+  animation: marquee-slide 28s linear infinite;
+  width: max-content;
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .hero-symbol {
-  background:
-    repeating-conic-gradient(
-      from -10deg,
-      rgba(109, 93, 252, 0.95) 0deg 7deg,
-      rgba(10, 166, 166, 0.95) 7deg 14deg,
-      rgba(233, 111, 95, 0.92) 14deg 16.36deg,
-      rgba(251, 250, 246, 0.18) 16.36deg 17deg
-    );
+  background: #3157d5;
   mask: radial-gradient(circle, transparent 0 17%, #000 18% 69%, transparent 70%);
 }
 
@@ -59,10 +120,8 @@ body {
 
 .butterfly-wing {
   animation: wing-flutter 0.42s ease-in-out infinite alternate;
-  background:
-    radial-gradient(circle at 52% 44%, rgba(255, 255, 255, 0.86) 0 12%, transparent 13%),
-    radial-gradient(ellipse at center, rgba(86, 140, 255, 0.62), rgba(120, 75, 255, 0.22) 48%, transparent 72%);
-  filter: blur(1px) drop-shadow(0 0 18px rgba(109, 93, 252, 0.5));
+  background: #3157d5;
+  border: 3px solid #fff7e8;
   height: 64px;
   position: absolute;
   top: 10px;
@@ -83,9 +142,8 @@ body {
 }
 
 .butterfly-body {
-  background: rgba(109, 93, 252, 0.48);
+  background: #10233f;
   border-radius: 999px;
-  filter: blur(1px);
   height: 52px;
   left: 52px;
   position: absolute;
@@ -97,7 +155,7 @@ body {
   animation: spark-glow 1.8s ease-in-out infinite;
   background: #8f7cff;
   border-radius: 999px;
-  box-shadow: 0 0 28px rgba(143, 124, 255, 0.9);
+  box-shadow: 0 0 0 5px #fff7e8;
   height: 9px;
   left: 52px;
   position: absolute;
@@ -106,16 +164,11 @@ body {
 }
 
 .hero-symbol-lines {
-  background:
-    repeating-conic-gradient(from 0deg, rgba(251, 250, 246, 0.28) 0deg 0.8deg, transparent 0.8deg 16.36deg);
-  mask: radial-gradient(circle, transparent 0 17%, #000 18% 72%, transparent 73%);
+  background: transparent;
 }
 
 .guided-scroll {
-  background-image:
-    linear-gradient(90deg, rgba(16, 17, 20, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(16, 17, 20, 0.08) 1px, transparent 1px);
-  background-size: 72px 72px;
+  background: #bfeae3;
 }
 
 .pie-logo {
@@ -147,7 +200,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid #0aa6a6;
+  outline: 3px solid #b7f06e;
   outline-offset: 4px;
 }
 
@@ -226,5 +279,11 @@ a {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-video {
+    object-position: 38% center;
   }
 }
