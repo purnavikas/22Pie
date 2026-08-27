@@ -1,0 +1,28 @@
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "hero-front-three-quarter",
+    "sourcePath": "/Users/sravani/Downloads/22Pie-main/22Pie/frontend/public/images/Chameleon_character_3D_modeling_…_202608262356.jpeg",
+    "width": 2752,
+    "height": 1536,
+    "foregroundCoverage": 0.1547,
+    "largestComponentFraction": 1.0,
+    "pHash": 18155905512632879362,
+    "duplicateOfHash": null
+  }
+}
+{
+  "admitted": true,
+  "reasons": [],
+  "provenance": {
+    "viewpoint": "hero-front-three-quarter",
+    "sourcePath": "/Users/sravani/Downloads/22Pie-main/22Pie/frontend/public/images/Chameleon_character_3D_modeling_…_202608262356.jpeg",
+    "width": 2752,
+    "height": 1536,
+    "foregroundCoverage": 0.1547,
+    "largestComponentFraction": 1.0,
+    "pHash": 18155905512632879362,
+    "duplicateOfHash": null
+  }
+}

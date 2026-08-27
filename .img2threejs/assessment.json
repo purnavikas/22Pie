@@ -1,0 +1,100 @@
+{
+  "targetName": "Stylized Chameleon Character",
+  "sourceImage": "frontend/public/images/Chameleon_character_3D_modeling_…_202608262356.jpeg",
+  "preSpecAssessment": {
+    "objectClass": {
+      "primaryType": "stylized upright chameleon character",
+      "primaryDomain": "character",
+      "formLanguage": ["organic", "character-like", "sculptural"],
+      "structureKind": ["compound object", "articulated assembly", "branching hierarchy"],
+      "motionPotential": ["articulated", "bendable tail", "independently aimed eyes"],
+      "materialFamilies": ["skin-like", "mixed dielectric"],
+      "notes": "Single-view stylized reconstruction; front/three-quarter features are observed and rear surfaces are inferred."
+    },
+    "complexity": {
+      "tier": "complex",
+      "scores": {
+        "silhouetteComplexity": 3,
+        "componentCount": 3,
+        "hierarchyDepth": 3,
+        "repetitionDensity": 3,
+        "materialLayerCount": 2,
+        "localDetailDensity": 3,
+        "occlusionRisk": 2,
+        "actionReadinessNeed": 3
+      },
+      "estimatedCounts": {
+        "macroComponents": 10,
+        "mesoComponents": 24,
+        "microFeatureGroups": 10,
+        "materialLayers": 5,
+        "repetitionSystems": 3
+      },
+      "reasoning": [
+        "The character combines an interrupted organic silhouette, 10 required runtime nodes, paired articulated limbs, a swept spiral tail, dense scales, mottled color fields, and high-sensitivity face features.",
+        "The two eye assemblies and neck/head separation require a deeper hierarchy than a static figurine."
+      ]
+    },
+    "specDepthDecision": {
+      "requiredDepth": "complex",
+      "minimumComponentLevels": ["macro", "meso", "micro"],
+      "needsRepetitionSystems": true,
+      "needsMaterialLocalOverrides": true,
+      "needsMultipleReviewViews": true,
+      "needsActionReadyHierarchy": true,
+      "rationale": "Silhouette and interaction depend on nested pivots while likeness depends on repeated scales, crest plates, color patches, and eye layers."
+    },
+    "unknownsToResolveBeforeImplementation": [
+      "Rear torso scale/color pattern is hidden and will use a symmetric palette continuation.",
+      "The rear surface and exact depth of the casque are inferred from chameleon anatomy and the visible three-quarter projection.",
+      "Occluded digit arrangement is inferred from the visible hands and feet."
+    ],
+    "detailInventory": {
+      "scanMethod": "grid-3x3 plus component zones",
+      "targetMinDetails": 10,
+      "details": [
+        {"id":"turret-rings","component":"eyes","description":"thick concentric eyelid/turret rims","evidenceRefs":["head-upper"]},
+        {"id":"iris-layers","component":"eyes","description":"gold-green iris, black pupil and white catchlight","evidenceRefs":["head-upper"]},
+        {"id":"casque-ridge","component":"head","description":"high sloped peaked casque with ochre edge plates","evidenceRefs":["head-upper"]},
+        {"id":"muzzle-plates","component":"head","description":"larger plate scales across snout and mouth margin","evidenceRefs":["head-middle"]},
+        {"id":"mouth-crease","component":"jawPivot","description":"thin russet nearly horizontal mouth crease","evidenceRefs":["head-middle"]},
+        {"id":"nostril","component":"head","description":"single visible recessed nostril with rust rim","evidenceRefs":["head-middle"]},
+        {"id":"dorsal-spines","component":"body","description":"small triangular spines descending from neck toward tail","evidenceRefs":["torso-right"]},
+        {"id":"skin-scales","component":"body","description":"dense shallow polygonal scale relief","evidenceRefs":["full-object"]},
+        {"id":"mottled-patches","component":"body","description":"irregular turquoise and ochre skin patches","evidenceRefs":["full-object"]},
+        {"id":"tail-bands","component":"tailRoot","description":"muted ochre bands along thick spiral tail","evidenceRefs":["tail"]},
+        {"id":"hand-digits","component":"limbs","description":"separated rounded pincer-like hand digits","evidenceRefs":["hands"]},
+        {"id":"foot-digits","component":"limbs","description":"broad splayed three-lobed feet with pale tips","evidenceRefs":["feet"]}
+      ]
+    },
+    "anatomy": {
+      "applies": true,
+      "styleHeads": 3.25,
+      "proportions": {"headUnit":0.308,"torso":1.05,"legs":1.12,"shoulderWidth":0.92,"hipWidth":0.74},
+      "pose": {"type":"upright wide stance","jointAngles":{"neck":[-4,8,0],"leftShoulder":[0,0,17],"rightShoulder":[0,0,-18],"leftElbow":[0,0,-12],"rightElbow":[0,0,14],"leftHip":[0,0,18],"rightHip":[0,0,-18],"leftKnee":[0,0,-14],"rightKnee":[0,0,13]}},
+      "faceLandmarks": {"hairline":0.04,"eyeLine":0.43,"eyeSpacing":0.5,"noseBase":0.59,"mouthLine":0.73,"earTop":0.22,"earBottom":0.7},
+      "features": ["large protruding turret eyes", "peaked casque", "flat broad muzzle", "tucked lower jaw"],
+      "confidence": 0.84,
+      "note": "Ratios measured approximately from the admitted three-quarter reference; depth and rear anatomy have lower confidence."
+    }
+  },
+  "qualityContract": {
+    "qualityBar": "complex",
+    "definitionOfDone": [
+      "At the matched hero view the render must immediately read as the same mint-green stylized chameleon through its peaked head, enormous turret eyes, compact upright proportions, long splayed limbs, and spiral tail.",
+      "The named runtime hierarchy and independent head, eyes, jaw, and tail pivots must exist and be discoverable by name.",
+      "Front, profile, and rear-three-quarter views must show attached non-degenerate volumes without floating limbs, broken tail continuity, or hollow head artifacts."
+    ],
+    "minimumSpecDepth": {"macroComponents":10,"mesoComponents":16,"microFeatureGroups":8,"materialLayers":4,"repetitionSystems":2,"reviewViewpoints":5},
+    "featureGroups": [
+      {"id":"overall-silhouette","name":"Chameleon silhouette and proportions","required":true,"qualityCriteria":["3.1–3.4 head-unit height, head wider than upper torso, pear torso, splayed stance, continuous spiral tail"],"evidenceRefs":["full-object"],"failureModes":["generic lizard proportions","tail reads as a ring or straight cone"]},
+      {"id":"eye-system","name":"Independent protruding eye assemblies","required":true,"qualityCriteria":["two symmetric turret sockets, separately rotatable pivots, layered iris/pupil/catchlight, strong protrusion"],"evidenceRefs":["head-upper"],"failureModes":["flat face eyes","crossed or shared eye transform","missing turret rings"]},
+      {"id":"head-structure","name":"Casque, muzzle and jaw","required":true,"qualityCriteria":["peaked sloped casque, broad flat muzzle, tucked jaw and thin straight mouth crease"],"evidenceRefs":["head"],"failureModes":["round generic head","dog-like snout","human lips"]},
+      {"id":"surface-response","name":"Scaled mottled skin","required":true,"qualityCriteria":["mint/teal/yellow-green palette, shallow scale relief, larger facial plates and irregular localized patches"],"evidenceRefs":["full-object"],"failureModes":["flat plastic","uniform green","noise without scale structure"]},
+      {"id":"attachments","name":"Limb, digit and tail attachments","required":true,"qualityCriteria":["all appendage roots overlap parents, digits connect to palms/soles, tail continuously leaves pelvis"],"evidenceRefs":["full-object"],"failureModes":["floating joints","detached digits","tail seam"]}
+    ],
+    "visualDeltaChecks": ["silhouette and negative-space delta", "eye size/spacing/protrusion delta", "casque and muzzle profile delta", "tail curl arc delta", "mottled palette and scale-frequency delta"],
+    "antiShallowSpecRules": ["Do not merge eye pivots with the head mesh.", "Do not represent the spiral tail as a torus.", "Do not flatten digits into a texture.", "Do not pass a view with disconnected appendages or a generic spherical head."]
+  },
+  "authoringInstruction": "Use this observed complex character contract to author the procedural model and review each locked pass."
+}
