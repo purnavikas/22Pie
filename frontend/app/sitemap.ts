@@ -4,6 +4,10 @@ export const dynamic = 'force-static';
 
 const routes = [
   '',
+  'web-app-development',
+  'learning',
+  'agents',
+  'integrations',
   'courses',
   'learning-paths',
   'services',

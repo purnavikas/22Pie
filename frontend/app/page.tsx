@@ -1,8 +1,13 @@
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Check, Circle, Sparkles } from 'lucide-react';
-import { learningPaths, services, trustItems } from '@/data/site';
+import type { CSSProperties } from 'react';
+import { flagshipPillars, pillarAccents, services, spotlightAccents, spotlightArt, trustItems } from '@/data/site';
 import { RubiksCubeSection } from '@/components/sections/rubiks-cube-section';
 import { ChameleonReactionSection } from '@/components/chameleon/chameleon-reaction-section';
+import { BentoGrid, BentoTile } from '@/components/shared/bento-grid';
+import { SpotlightCard } from '@/components/shared/spotlight-card';
+import { MagneticLink } from '@/components/shared/magnetic-link';
+import { TileArt } from '@/components/shared/tile-art';
 
 function DevelopmentShowcase() {
   return (
@@ -68,52 +73,68 @@ export default function HomePage() {
       <section className="bg-graphite px-4 py-24 text-white md:px-8 md:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="grid gap-10 md:grid-cols-[0.75fr_1.25fr] md:items-end">
-            <p className="max-w-xs text-xs font-semibold uppercase tracking-[0.18em] text-white/60">01 — Choose your direction</p>
+            <p className="max-w-xs text-xs font-semibold uppercase tracking-[0.18em] text-white/60">01 — The catalogue</p>
             <h2 className="max-w-4xl text-4xl font-medium leading-[0.98] tracking-[-0.045em] md:text-7xl">
-              Technology becomes useful when you know what to build with it.
+              Five ways to work with us. Pick one to see it in action.
             </h2>
           </div>
 
-          <div className="mt-16 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {learningPaths.map((path, index) => (
-              <Link className="learning-card group flex min-h-[360px] flex-col justify-between rounded-[24px] border border-white/15 bg-[#1d1d1d] p-6 transition hover:-translate-y-1 hover:border-violet" href={`/learning-paths/${path.slug}`} key={path.slug}>
-                <div className="flex items-start justify-between">
-                  <span className="text-xs text-white/50">0{index + 1}</span>
-                  <ArrowUpRight className="transition group-hover:rotate-45" size={20} />
-                </div>
-                <div>
-                  <span className="mb-5 inline-flex rounded-full bg-violet px-3 py-1 text-[11px] font-semibold">{path.status}</span>
-                  <h3 className="text-3xl font-medium tracking-[-0.035em]">{path.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-white/60">{path.level} · {path.duration}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <BentoGrid className="mt-16">
+            {flagshipPillars.map((pillar) => {
+              const Icon = pillar.icon;
+              const accent = pillarAccents[pillar.slug];
+              return (
+                <BentoTile accent={accent} href={`/${pillar.slug}`} key={pillar.slug} span={pillar.featured ? 'lg' : 'sm'}>
+                  <div>
+                    <div className="flex items-start justify-between">
+                      <span
+                        className="grid size-11 place-items-center rounded-full"
+                        style={{ background: `color-mix(in srgb, ${accent} 22%, transparent)`, color: accent }}
+                      >
+                        <Icon size={20} />
+                      </span>
+                      <ArrowUpRight className="text-white/40 transition group-hover:rotate-45" size={20} />
+                    </div>
+                    <TileArt accent={accent} className={pillar.featured ? 'mt-6 h-28 opacity-90 md:h-36' : 'mt-4 h-16 opacity-80'} variant={pillar.art} />
+                  </div>
+                  <div>
+                    <h3 className={pillar.featured ? 'text-3xl font-medium tracking-[-0.035em] md:text-4xl' : 'text-2xl font-medium tracking-[-0.03em]'}>
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-white/60">{pillar.copy}</p>
+                  </div>
+                </BentoTile>
+              );
+            })}
+          </BentoGrid>
         </div>
       </section>
 
-      <section className="bg-white px-4 py-24 text-graphite md:px-8 md:py-32">
+      <section className="bg-midnight px-4 py-24 text-white md:px-8 md:py-32">
         <div className="mx-auto max-w-[1440px]">
-          <div className="flex flex-col justify-between gap-8 border-b border-graphite pb-10 md:flex-row md:items-end">
+          <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-10 md:flex-row md:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet">02 — What we do</p>
+              <p className="pillar-eyebrow text-xs font-semibold uppercase tracking-[0.18em]" style={{ '--pillar-accent': '#3157D5' } as CSSProperties}>
+                02 — What we do
+              </p>
               <h2 className="mt-5 max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.055em] md:text-8xl">One ecosystem.<br />Many ways forward.</h2>
             </div>
-            <Link className="inline-flex w-fit items-center gap-2 rounded-full bg-graphite px-5 py-3 text-sm font-semibold text-white" href="/services">
+            <Link className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:bg-aqua" href="/services">
               All services <ArrowUpRight size={17} />
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {services.map(([title, copy, Icon], index) => (
-              <article className="group min-h-[280px] border-b border-graphite p-6 transition hover:bg-paper lg:border-r" key={title}>
+              <SpotlightCard accent={spotlightAccents[index % spotlightAccents.length]} className="flex min-h-[300px] flex-col p-6" key={title}>
                 <div className="flex items-center justify-between">
                   <Icon size={23} />
-                  <span className="text-xs text-ink/50">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="text-xs text-white/40">{String(index + 1).padStart(2, '0')}</span>
                 </div>
-                <h3 className="mt-24 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/65">{copy}</p>
-              </article>
+                <TileArt accent={spotlightAccents[index % spotlightAccents.length]} className="mt-6 h-20 opacity-80" variant={spotlightArt[index % spotlightArt.length]} />
+                <h3 className="mt-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-white/60">{copy}</p>
+              </SpotlightCard>
             ))}
           </div>
         </div>
@@ -140,9 +161,9 @@ export default function HomePage() {
           <p className="text-xs font-semibold uppercase tracking-[0.18em]">Ready when you are</p>
           <div className="mt-20 flex flex-col justify-between gap-10 md:mt-32 md:flex-row md:items-end">
             <h2 className="max-w-5xl text-5xl font-medium leading-[0.92] tracking-[-0.055em] md:text-8xl">Make your next move matter.</h2>
-            <Link className="inline-flex size-28 shrink-0 items-center justify-center rounded-full bg-white text-graphite transition hover:scale-105" href="/contact" aria-label="Start a conversation">
+            <MagneticLink ariaLabel="Start a conversation" className="inline-flex size-28 shrink-0 items-center justify-center rounded-full bg-white text-graphite transition hover:scale-105" href="/contact">
               <ArrowUpRight size={34} />
-            </Link>
+            </MagneticLink>
           </div>
         </div>
       </section>

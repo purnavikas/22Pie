@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { navItems } from '@/data/site';
+import { navItems, secondaryNavItems } from '@/data/site';
 import { Logo } from './logo';
 
 const policies = [
@@ -22,6 +22,11 @@ export function SiteFooter() {
         </div>
         <nav className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4" aria-label="Footer navigation">
           {navItems.map(([label, href]) => (
+            <Link key={label} className="text-paper hover:text-aqua" href={href}>
+              {label}
+            </Link>
+          ))}
+          {secondaryNavItems.map(([label, href]) => (
             <Link key={label} className="text-paper hover:text-aqua" href={href}>
               {label}
             </Link>

@@ -35,8 +35,8 @@ export function SiteHeader() {
 
         <div className="nav-island-content px-3">
           <div className="border-t border-white/10 px-1 pb-4 pt-3 md:flex md:items-center md:justify-between md:gap-5">
-            <nav className="grid gap-1 text-sm font-medium text-white/70 md:flex md:items-center md:gap-1" aria-label="Primary navigation">
-              {navItems.slice(0, 6).map(([label, href]) => (
+            <nav className="grid gap-1 text-sm font-medium text-white/70 md:flex md:flex-wrap md:items-center md:gap-1" aria-label="Primary navigation">
+              {navItems.map(([label, href]) => (
                 <Link key={label} className="rounded-full px-4 py-2.5 transition hover:bg-white/10 hover:text-white" href={href}>
                   {label}
                 </Link>

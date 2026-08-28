@@ -817,3 +817,254 @@ a {
     font-size: 0.56rem;
   }
 }
+
+/* -----------------------------------------------------------------------
+   Shared AI-native primitives: pillar hero chrome, glass cards, spotlight
+   cards, terminal chrome, and node-graph pieces used across the flagship
+   pillar pages (Web & App Dev, Learning, Career, Agents, Integrations).
+   Each consumer sets --pillar-accent to tint these against the page's own
+   accent color (see pillarAccents in data/site.ts).
+   ----------------------------------------------------------------------- */
+
+.pillar-hero {
+  background:
+    radial-gradient(120% 140% at 18% -10%, color-mix(in srgb, var(--pillar-accent, #3157d5) 22%, transparent), transparent 60%),
+    #0b0f14;
+  color: #eee9df;
+  overflow: hidden;
+  position: relative;
+}
+
+.pillar-hero::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  content: '';
+  inset: 0;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  pointer-events: none;
+  position: absolute;
+}
+
+.pillar-eyebrow {
+  align-items: center;
+  color: var(--pillar-accent, #3157d5);
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.pillar-eyebrow::before {
+  background: currentColor;
+  border-radius: 999px;
+  box-shadow: 0 0 12px currentColor;
+  content: '';
+  height: 6px;
+  width: 6px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  position: relative;
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.glass-card:hover {
+  border-color: color-mix(in srgb, var(--pillar-accent, #3157d5) 55%, rgba(255, 255, 255, 0.12));
+  box-shadow: 0 0 40px color-mix(in srgb, var(--pillar-accent, #3157d5) 30%, transparent);
+}
+
+.spotlight-card {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.spotlight-card::after {
+  background: radial-gradient(280px circle at var(--spot-x, 50%) var(--spot-y, 50%), color-mix(in srgb, var(--pillar-accent, #3157d5) 32%, transparent), transparent 70%);
+  content: '';
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 260ms ease;
+  z-index: 1;
+}
+
+.spotlight-card:hover::after,
+.spotlight-card:focus-within::after {
+  opacity: 1;
+}
+
+.terminal-chrome {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.terminal-dot {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  height: 10px;
+  width: 10px;
+}
+
+.terminal-dot:nth-child(1) { background: #c82634; }
+.terminal-dot:nth-child(2) { background: #ffd52c; }
+.terminal-dot:nth-child(3) { background: #23864b; }
+
+.node-graph-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.5;
+  transition: stroke 220ms ease;
+}
+
+.node-graph-line[data-active='true'] {
+  stroke: var(--pillar-accent, #3157d5);
+}
+
+.node-graph-pulse {
+  fill: var(--pillar-accent, #3157d5);
+  filter: drop-shadow(0 0 6px var(--pillar-accent, #3157d5));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card,
+  .spotlight-card::after {
+    transition: none;
+  }
+}
+
+.roadmap-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(to right, var(--pillar-accent, #3157d5) var(--fill, 0%), rgba(255, 255, 255, 0.15) var(--fill, 0%));
+  border-radius: 999px;
+  height: 4px;
+  outline: none;
+  width: 100%;
+}
+
+.roadmap-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--pillar-accent, #3157d5);
+  border: 3px solid #0b0f14;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px var(--pillar-accent, #3157d5);
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+
+.roadmap-range::-moz-range-thumb {
+  background: var(--pillar-accent, #3157d5);
+  border: 3px solid #0b0f14;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+}
+
+.roadmap-range::-moz-range-track {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  height: 4px;
+}
+
+.scroll-rail {
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-rail > * {
+  scroll-snap-align: start;
+}
+
+.tile-art-pulse {
+  animation: tile-pulse 2.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.tile-art-float {
+  animation: tile-float 3.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes tile-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes tile-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.guide-butterfly {
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.35));
+  height: 44px;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 44px;
+  will-change: transform, opacity;
+  z-index: 40;
+}
+
+.guide-butterfly-bob {
+  animation: guide-butterfly-bob 2.4s ease-in-out infinite;
+}
+
+.guide-butterfly-image {
+  animation: chameleon-wing-flap 210ms ease-in-out infinite alternate;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+@keyframes guide-butterfly-bob {
+  0%, 100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(4deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .guide-butterfly {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-butterfly-image {
+    animation-duration: 700ms;
+  }
+}

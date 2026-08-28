@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { learningPaths, resources, services } from '@/data/site';
 
 const pages = {
   courses: ['Courses', 'Explore upcoming and available technology classes. Course details are pulled from the PHP API when connected.'],
   'learning-paths': ['Learning Paths', 'Structured tracks for Salesforce, Java, DevOps, CRM, cloud, integration, interview preparation, and certification readiness.'],
-  services: ['Services', 'Training, mentoring, consulting, freelance delivery, corporate enablement, and application support.'],
-  'career-guidance': ['Career Guidance', 'Resume review, roadmap planning, profile optimisation, and practical interview preparation for technology roles.'],
   'interview-training': ['Interview Training', 'Mock interviews, scenario practice, communication feedback, and role-specific preparation.'],
   'certification-guidance': ['Certification Guidance', 'Study planning and practical support for certifications across Salesforce, CRM, cloud, and developer technologies.'],
   projects: ['Projects', 'Project delivery services for websites, CRM implementation, automation, integrations, internal tools, and support.'],
@@ -88,12 +85,6 @@ export default async function ContentPage({ params }: Props) {
             <p className="mt-2 text-sm text-ink">{path.level} / {path.duration}</p>
           </Link>
         ))}
-        {slug === 'services' && services.map(([name, copy]) => (
-          <Link className="rounded border-2 border-graphite bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-soft" href={`/services/${name.toLowerCase().replaceAll(' ', '-')}`} key={name}>
-            <h2 className="text-xl font-black">{name}</h2>
-            <p className="mt-2 text-sm leading-6 text-ink">{copy}</p>
-          </Link>
-        ))}
         {slug === 'resources' && resources.map((resource) => (
           <Link className="rounded border-2 border-graphite bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-soft" href={`/resources/${resource.slug}`} key={resource.slug}>
             <span className="font-mono text-xs font-bold text-aqua">{resource.type}</span>
@@ -103,28 +94,27 @@ export default async function ContentPage({ params }: Props) {
         ))}
       </div>
 
-      {(slug.includes('enquiry') || slug === 'contact' || slug === 'career-guidance') && <EnquiryForm />}
-
-      <div className="mt-12 rounded border-2 border-graphite bg-white p-5">
-        <h2 className="text-xl font-black text-graphite">API-ready content</h2>
-        <p className="mt-2 text-sm leading-6 text-ink">
-          This page is static-export compatible. When the PHP API is connected, list and detail data can be fetched from `/api/v1/public/...` without requiring a production Node.js server.
-        </p>
-        <Link className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet" href="/contact">
-          Talk to the team <ArrowRight size={16} />
-        </Link>
-      </div>
+      {(slug.includes('enquiry') || slug === 'contact') && <EnquiryForm slug={slug} />}
     </section>
   );
 }
 
-function EnquiryForm() {
+const TOPIC_FIELD: Record<string, { label: string; placeholder: string }> = {
+  'project-enquiry': { label: 'Project type', placeholder: 'e.g. CRM integration, web app, automation' },
+  'course-enquiry': { label: 'Course interest', placeholder: 'e.g. Salesforce, Java, DevOps' }
+};
+
+function EnquiryForm({ slug }: { slug: string }) {
+  const enquiryType = slug === 'project-enquiry' ? 'project' : slug === 'course-enquiry' ? 'course' : 'contact';
+  const topicField = TOPIC_FIELD[slug] ?? { label: 'Topic', placeholder: '' };
+
   return (
     <form className="mt-10 grid gap-4 rounded border-2 border-graphite bg-white p-5 md:grid-cols-2" action="/api/v1/public/enquiries" method="post">
+      <input name="type" type="hidden" value={enquiryType} />
       <label className="text-sm font-bold">Name<input className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="name" required /></label>
       <label className="text-sm font-bold">Email<input className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="email" type="email" required /></label>
       <label className="text-sm font-bold">Phone<input className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="phone" /></label>
-      <label className="text-sm font-bold">Topic<input className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="topic" /></label>
+      <label className="text-sm font-bold">{topicField.label}<input className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="topic" placeholder={topicField.placeholder} /></label>
       <label className="hidden">Company<input name="company_website" tabIndex={-1} autoComplete="off" /></label>
       <label className="text-sm font-bold md:col-span-2">Message<textarea className="mt-2 w-full rounded border-2 border-graphite px-3 py-2 font-normal" name="message" rows={5} required /></label>
       <label className="flex gap-3 text-sm md:col-span-2"><input className="mt-1" name="consent" type="checkbox" required /> I consent to the team contacting me about this enquiry.</label>
