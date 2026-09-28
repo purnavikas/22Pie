@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Check, Circle, Sparkles } from 'lucide-react'
 import { learningPaths, services, trustItems } from '@/data/site';
 import { RubiksCubeSection } from '@/components/sections/rubiks-cube-section';
 import { ChameleonReactionSection } from '@/components/chameleon/chameleon-reaction-section';
+import { IntroVideoOverlay } from '@/components/layout/intro-video-overlay';
 
 function DevelopmentShowcase() {
   return (
@@ -18,8 +19,8 @@ function DevelopmentShowcase() {
             Web &amp; app development
           </div>
           <div className="hidden items-center gap-2 md:flex">
-            <span className="rounded-full border border-white/50 bg-graphite/15 px-4 py-2 text-xs font-semibold backdrop-blur-sm">Requirement-led</span>
-            <span className="rounded-full border border-white/50 bg-graphite/15 px-4 py-2 text-xs font-semibold backdrop-blur-sm">Built with purpose</span>
+            <span className="glass-pill px-4 py-2 text-xs font-semibold">Requirement-led</span>
+            <span className="glass-pill px-4 py-2 text-xs font-semibold">Built with purpose</span>
           </div>
         </div>
         <div className="absolute bottom-14 left-6 right-6 z-20 max-w-3xl md:bottom-20 md:left-10 md:right-auto">
@@ -33,7 +34,7 @@ function DevelopmentShowcase() {
           <p className="mt-6 max-w-2xl text-sm leading-7 text-white/75 md:text-base">
             We are passionate about web and app development. Based on your requirements, we select the right technology stack and build with care—turning your imagination into a real, working digital product.
           </p>
-          <Link className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-graphite transition hover:bg-aqua" href="/project-enquiry">
+          <Link className="glass-button mt-7 inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-graphite transition" href="/project-enquiry">
             Discuss your project <ArrowRight size={17} />
           </Link>
         </div>
@@ -49,6 +50,7 @@ function DevelopmentShowcase() {
 export default function HomePage() {
   return (
     <>
+      <IntroVideoOverlay />
       <ChameleonReactionSection />
 
       <RubiksCubeSection />
@@ -76,7 +78,7 @@ export default function HomePage() {
 
           <div className="mt-16 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {learningPaths.map((path, index) => (
-              <Link className="learning-card group flex min-h-[360px] flex-col justify-between rounded-[24px] border border-white/15 bg-[#1d1d1d] p-6 transition hover:-translate-y-1 hover:border-violet" href={`/learning-paths/${path.slug}`} key={path.slug}>
+              <Link className="glass-surface glass-surface--dark learning-card group flex min-h-[360px] flex-col justify-between rounded-[24px] p-6 transition hover:-translate-y-1" href={`/learning-paths/${path.slug}`} key={path.slug}>
                 <div className="flex items-start justify-between">
                   <span className="text-xs text-white/50">0{index + 1}</span>
                   <ArrowUpRight className="transition group-hover:rotate-45" size={20} />
@@ -99,14 +101,14 @@ export default function HomePage() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet">02 — What we do</p>
               <h2 className="mt-5 max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.055em] md:text-8xl">One ecosystem.<br />Many ways forward.</h2>
             </div>
-            <Link className="inline-flex w-fit items-center gap-2 rounded-full bg-graphite px-5 py-3 text-sm font-semibold text-white" href="/services">
+            <Link className="glass-button glass-button--dark inline-flex w-fit items-center gap-2 px-5 py-3 text-sm font-semibold text-white" href="/services">
               All services <ArrowUpRight size={17} />
             </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4">
             {services.map(([title, copy, Icon], index) => (
-              <article className="group min-h-[280px] border-b border-graphite p-6 transition hover:bg-paper lg:border-r" key={title}>
+              <article className="glass-surface glass-surface--light group min-h-[280px] p-6 transition lg:rounded-none" key={title}>
                 <div className="flex items-center justify-between">
                   <Icon size={23} />
                   <span className="text-xs text-ink/50">{String(index + 1).padStart(2, '0')}</span>
@@ -136,11 +138,11 @@ export default function HomePage() {
       </section>
 
       <section className="bg-graphite px-4 py-24 text-white md:px-8 md:py-32">
-        <div className="mx-auto max-w-[1440px] rounded-[28px] bg-violet p-7 md:p-14">
+        <div className="glass-surface glass-surface--violet mx-auto max-w-[1440px] rounded-[28px] p-7 md:p-14">
           <p className="text-xs font-semibold uppercase tracking-[0.18em]">Ready when you are</p>
           <div className="mt-20 flex flex-col justify-between gap-10 md:mt-32 md:flex-row md:items-end">
             <h2 className="max-w-5xl text-5xl font-medium leading-[0.92] tracking-[-0.055em] md:text-8xl">Make your next move matter.</h2>
-            <Link className="inline-flex size-28 shrink-0 items-center justify-center rounded-full bg-white text-graphite transition hover:scale-105" href="/contact" aria-label="Start a conversation">
+            <Link className="glass-button inline-flex size-28 shrink-0 items-center justify-center text-graphite transition hover:scale-105" href="/contact" aria-label="Start a conversation">
               <ArrowUpRight size={34} />
             </Link>
           </div>

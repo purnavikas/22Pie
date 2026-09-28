@@ -89,7 +89,7 @@ function CapabilityItem({ capability, side }: {
 export function RubiksCubeSection() {
   return (
     <section className="rubiks-section" aria-labelledby="rubiks-heading">
-      <header className="capabilities-intro">
+      <header className="capabilities-intro glass-surface glass-surface--dark">
         <p className="rubiks-eyebrow">Our capabilities</p>
         <h2 id="rubiks-heading">Six capabilities.<br />One technology partner.</h2>
         <p className="rubiks-description">

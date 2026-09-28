@@ -12,7 +12,7 @@ const policies = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t-2 border-aqua bg-graphite text-paper">
+    <footer className="site-footer-glass border-t-2 border-aqua bg-graphite text-paper">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-[1.2fr_2fr_1fr] lg:px-6">
         <div>
           <Logo />
@@ -34,8 +34,8 @@ export function SiteFooter() {
         </nav>
         <form className="space-y-3">
           <label className="text-sm font-semibold" htmlFor="newsletter">Newsletter</label>
-          <input id="newsletter" className="w-full rounded border-2 border-paper bg-white px-3 py-2 text-sm text-graphite placeholder:text-ink" placeholder="email@example.com" type="email" />
-          <button className="w-full rounded bg-aqua px-4 py-2 text-sm font-bold text-graphite" type="button">Subscribe</button>
+          <input id="newsletter" className="glass-input w-full px-3 py-2 text-sm text-graphite placeholder:text-ink" placeholder="email@example.com" type="email" />
+          <button className="glass-button w-full px-4 py-2 text-sm font-bold text-graphite" type="button">Subscribe</button>
         </form>
       </div>
     </footer>
